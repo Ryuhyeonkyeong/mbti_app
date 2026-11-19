@@ -1,69 +1,87 @@
-import Image from "next/image";
+import Link from "next/link";
+
+// 첫 화면에 보여줄 3가지 특징 카드 데이터입니다
+const FEATURES = [
+  {
+    emoji: "⏱️",
+    title: "20문항 · 2분",
+    description: "부담 없이 빠르게 답할 수 있는 간단한 질문",
+    bgClass: "bg-pink-50/90 border-pink-100",
+  },
+  {
+    emoji: "🧩",
+    title: "16가지 유형",
+    description: "내 성향에 딱 맞는 16가지 성격 유형 분석",
+    bgClass: "bg-sky-50/90 border-sky-100",
+  },
+  {
+    emoji: "🐾",
+    title: "유형별 3D 캐릭터",
+    description: "유형마다 닮은 귀여운 3D 동물 친구 공개",
+    bgClass: "bg-emerald-50/90 border-emerald-100",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    /* 첫 화면 전체 영역에 연한 민트색 계열 배경을 적용합니다 */
+    <div className="flex-1 flex flex-col justify-between gap-8 -mx-5 -my-7 px-5 py-7 bg-gradient-to-b from-[#e7fbf2] via-[#f1fdf8] to-[#e0f7ed]">
+      {/* 상단 인사 및 검사 시작 버튼 영역 */}
+      <section className="flex flex-col items-center text-center pt-4 gap-5">
+        {/* 파스텔 배지 */}
+        <span className="inline-flex items-center rounded-full bg-purple-100/80 px-3.5 py-1 text-xs font-medium text-purple-700">
+          ✨ 나만의 성격 유형 찾기
+        </span>
+
+        {/* 큰 제목과 한 줄 소개 문구 */}
+        <div className="space-y-3">
+          <h1 className="text-3xl font-bold tracking-tight text-[#2e293a] leading-snug">
+            나는 어떤 유형일까?
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-sm sm:text-base text-[#665f75] leading-relaxed">
+            가벼운 질문에 답하고 나의 성격 유형과
+            <br />
+            어울리는 3D 동물 캐릭터를 만나보세요.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* 큼직한 검사 시작 버튼 (/test 페이지로 이동) */}
+        <Link
+          href="/test"
+          className="w-full mt-2 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-purple-500 to-pink-400 px-8 py-5 text-lg font-bold text-white shadow-[0_12px_28px_rgba(168,85,247,0.3)] hover:opacity-95 active:scale-[0.99] transition-all"
+        >
+          검사 시작하기
+        </Link>
+      </section>
+
+      {/* 서비스 특징을 소개하는 카드 3개 영역 */}
+      <section aria-label="서비스 특징" className="grid grid-cols-1 gap-3">
+        {FEATURES.map((feature) => (
+          <div
+            key={feature.title}
+            className={`flex items-center gap-4 rounded-2xl border p-4 shadow-[0_6px_18px_rgba(140,120,180,0.08)] ${feature.bgClass}`}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm">
+              {feature.emoji}
+            </div>
+            <div className="text-left">
+              <h2 className="text-base font-bold text-[#2e293a]">
+                {feature.title}
+              </h2>
+              <p className="text-xs text-[#665f75] mt-0.5">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* 맨 아래 작은 안내 문구 */}
+      <footer className="pt-2 pb-1 text-center">
+        <p className="text-xs text-[#8d859c] leading-relaxed">
+          이 검사는 재미로 보는 간이 검사이며, 공식 MBTI® 검사가 아닙니다.
+        </p>
+      </footer>
     </div>
   );
 }
