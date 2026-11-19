@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeCharacterShowcase from "@/components/HomeCharacterShowcase";
 
 // 첫 화면에 보여줄 3가지 특징 카드 데이터입니다
 const FEATURES = [
@@ -44,6 +45,9 @@ export default function Home() {
             어울리는 3D 동물 캐릭터를 만나보세요.
           </p>
         </div>
+
+        {/* 3초마다 바뀌는 3D 동물 캐릭터 미리보기 */}
+        <HomeCharacterShowcase />
 
         {/* 큼직한 검사 시작 버튼 (/test 페이지로 이동) */}
         <Link

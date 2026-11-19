@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { getMbtiTypeInfo } from "@/data/types";
 import ShareResultButton from "@/components/ShareResultButton";
+import CharacterViewer from "@/components/CharacterViewer";
 
 // params에서 유형 코드를 읽어 실제 결과 화면을 그려 주는 컴포넌트입니다
 async function ResultContent({
@@ -54,14 +55,15 @@ async function ResultContent({
         </p>
       </section>
 
-      {/* 2) 캐릭터 자리: 대표 색상 배경의 둥근 상자 안에 캐릭터 이름 표시 */}
+      {/* 2) 캐릭터 자리: 해당 유형의 3D 동물 캐릭터를 보여줍니다 */}
       <section aria-label="유형 캐릭터">
         <div
-          className="flex h-44 w-full items-center justify-center rounded-3xl border border-white/80 shadow-[0_10px_26px_rgba(140,120,180,0.12)]"
-          style={{ backgroundColor: info.color }}
+          className="flex flex-col items-center justify-center rounded-3xl border border-white/80 p-3 shadow-[0_10px_26px_rgba(140,120,180,0.12)]"
+          style={{ backgroundColor: `${info.color}cc` }}
         >
-          <span className="rounded-2xl bg-white/85 px-6 py-3 text-xl font-bold text-[#2e293a] shadow-sm">
-            {info.character.name}
+          <CharacterViewer typeCode={info.code} showDownload />
+          <span className="mt-1 rounded-full bg-white/85 px-4 py-1 text-xs font-bold text-[#2e293a] shadow-sm">
+            {info.character.name} ({info.character.animal})
           </span>
         </div>
       </section>
