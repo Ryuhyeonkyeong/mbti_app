@@ -1,7 +1,38 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getMbtiTypeInfo } from "@/data/types";
 import ResultView, { type PercentageRow } from "@/components/ResultView";
+
+// 유형 코드에 따라 브라우저 탭 제목과 링크 미리보기(Open Graph)를 동적으로 생성합니다
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}): Promise<Metadata> {
+  const { type } = await params;
+  const info = getMbtiTypeInfo(type);
+
+  if (!info) {
+    return {
+      title: "없는 유형",
+      description: "요청하신 성격 유형 정보를 찾을 수 없습니다.",
+    };
+  }
+
+  const fullTitle = `${info.code} ${info.nickname} | Tina' MBTI`;
+
+  return {
+    title: {
+      absolute: fullTitle,
+    },
+    description: info.summary,
+    openGraph: {
+      title: fullTitle,
+      description: info.summary,
+    },
+  };
+}
 
 // 유형별 일러스트 아래에 보여줄 한 줄 캡션입니다
 const ILLUSTRATION_CAPTIONS: Record<string, string> = {

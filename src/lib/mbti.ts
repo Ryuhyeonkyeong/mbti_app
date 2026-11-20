@@ -58,8 +58,3 @@ export function calculateMbtiWithPercentages(selectedTraits: MbtiTrait[]): {
     },
   };
 }
-
-// 기존 호환용: 유형 코드만 필요할 때 사용합니다
-export function calculateMbti(selectedTraits: MbtiTrait[]): string {
-  return calculateMbtiWithPercentages(selectedTraits).type;
-}

@@ -11,11 +11,22 @@ const notoSansKr = Noto_Sans_KR({
   weight: ["400", "500", "700"],
 });
 
-// 브라우저 탭과 검색 결과에 표시될 서비스 정보입니다
+// 브라우저 탭과 링크 공유 미리보기(Open Graph)에 표시될 기본 서비스 정보입니다
 export const metadata: Metadata = {
-  title: "Tina' MBTI",
+  title: {
+    default: "Tina' MBTI",
+    template: "%s | Tina' MBTI",
+  },
   description:
-    "간단한 질문에 답하고 나만의 성격 유형과 3D 동물 캐릭터를 만나보세요.",
+    "80개 질문으로 알아보는 나의 성격 유형과 귀여운 3D 동물 캐릭터 검사 서비스입니다.",
+  openGraph: {
+    title: "Tina' MBTI - 나의 성격 유형과 3D 동물 캐릭터 찾기",
+    description:
+      "80개 질문에 답하고 16가지 성격 유형과 나만의 3D 동물 캐릭터를 만나보세요.",
+    type: "website",
+    locale: "ko_KR",
+    siteName: "Tina' MBTI",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
