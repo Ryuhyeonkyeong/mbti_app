@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import AppShell from "@/components/AppShell";
+import { AuthProvider } from "@/components/AuthProvider";
 import "./globals.css";
 
 // Google Fonts에서 Noto Sans KR 글꼴을 불러옵니다
@@ -21,8 +22,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={`${notoSansKr.variable} h-full antialiased`}>
       <body className="min-h-full font-sans flex justify-center">
-        {/* 상단에서 PC용(가로) / 모바일용(세로) 화면 모드를 전환할 수 있는 공통 틀입니다 */}
-        <AppShell>{children}</AppShell>
+        {/* 앱 전체에서 로그인 상태를 공유할 수 있도록 AuthProvider로 감쌉니다 */}
+        <AuthProvider>
+          {/* 상단에서 PC용(가로) / 모바일용(세로) 화면 모드를 전환할 수 있는 공통 틀입니다 */}
+          <AppShell>{children}</AppShell>
+        </AuthProvider>
       </body>
     </html>
   );
