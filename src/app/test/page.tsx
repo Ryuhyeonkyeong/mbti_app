@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { QUESTIONS, type MbtiTrait } from "@/data/questions";
-import { calculateMbti } from "@/lib/mbti";
+import { calculateMbtiWithPercentages } from "@/lib/mbti";
 
 export default function TestPage() {
   const router = useRouter();
@@ -26,13 +26,15 @@ export default function TestPage() {
     nextAnswers[currentIndex] = trait;
     setAnswers(nextAnswers);
 
-    // 마지막 문항이라면 유형을 계산해서 결과 페이지로 이동합니다
+    // 마지막 문항이라면 유형과 성향 비율(%)을 계산해서 결과 페이지로 이동합니다
     if (currentIndex === totalQuestions - 1) {
       const completedTraits = nextAnswers.filter(
         (item): item is MbtiTrait => item !== undefined
       );
-      const mbtiType = calculateMbti(completedTraits);
-      router.push(`/result/${mbtiType}`);
+      const { type, percentages } = calculateMbtiWithPercentages(completedTraits);
+      router.push(
+        `/result/${type}?e=${percentages.E}&s=${percentages.S}&t=${percentages.T}&j=${percentages.J}`
+      );
       return;
     }
 

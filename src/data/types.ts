@@ -35,12 +35,24 @@ export interface MbtiTypeInfo {
   summary: string;
   /** 3~4문장 분량의 성격 설명 */
   description: string;
+  /** 회사에서의 성향 분석 */
+  workStyle: string;
+  /** 연애할 때의 성향 분석 */
+  loveStyle: string;
+  /** 연애에 잘 맞는 MBTI 유형 2개 */
+  loveMatchTypes: [MbtiTypeCode, MbtiTypeCode];
+  /** 연애 궁합이 잘 맞는 이유 한 줄 */
+  loveMatchReason: string;
   /** 강점 3가지 */
   strengths: [string, string, string];
   /** 조심할 점 2가지 */
   cautions: [string, string];
   /** 잘 맞는 유형 코드 2개 */
   compatibleTypes: [MbtiTypeCode, MbtiTypeCode];
+  /** 맞지 않는 유형 코드 2개 */
+  mismatchTypes: [MbtiTypeCode, MbtiTypeCode];
+  /** 맞지 않는 이유 한 줄 */
+  mismatchReason: string;
   /** 파스텔 톤 대표 색상 (HEX) */
   color: string;
   /** 3D 동물 캐릭터 정보 */
@@ -55,6 +67,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "조용히 미래를 내다보며 가장 탄탄한 길을 찾아내는 전략가예요.",
     description:
       "겉으로는 차분해 보이지만 머릿속에서는 늘 다음 단계와 전체 흐름을 치밀하게 그려 보고 있어요. 효율적이고 합리적인 기준을 중요하게 생각해서, 한 번 목표를 정하면 끝까지 밀고 나가는 힘이 강해요. 혼자 깊이 몰입하는 시간을 통해 새로운 해결책을 떠올릴 때 가장 큰 즐거움을 느껴요. 가까운 사람에게는 말보다 꾸준한 행동과 신뢰로 마음을 표현하는 편이에요.",
+    workStyle:
+      "회사에서는 비효율적인 절차를 빠르게 찾아내고 장기적인 해결책을 설계하는 전략가 역할을 잘 해내요. 불필요한 잡담보다 핵심만 짚는 회의를 선호하며, 자율성이 주어질 때 최고의 성과를 내요.",
+    loveStyle:
+      "연애를 시작할 때는 신중하지만, 한 번 마음을 열면 누구보다 진지하고 한결같이 상대를 챙겨요. 달콤한 말보다 약속을 지키고 미래를 함께 계획하는 행동으로 깊은 사랑을 보여줘요.",
+    loveMatchTypes: ["ENFP", "ENTP"],
+    loveMatchReason: "밝은 에너지와 호기심으로 차분한 내면에 즐거운 활력을 불어넣어 줘요.",
     strengths: [
       "복잡한 문제의 핵심을 빠르게 짚어내는 통찰력이 있어요",
       "목표를 세우면 흔들리지 않고 끝까지 해내는 추진력이 있어요",
@@ -65,6 +83,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "생각이 너무 깊어져 감정을 표현하는 타이밍을 놓치기 쉬워요",
     ],
     compatibleTypes: ["ENFP", "ENTP"],
+    mismatchTypes: ["ESFP", "ISFP"],
+    mismatchReason: "즉흥적이고 감각적인 흐름이 계획적인 성향과 부딪힐 수 있어요.",
     color: "#D8CCF5",
     character: {
       animal: "부엉이",
@@ -77,6 +97,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "세상의 원리가 궁금해 끊임없이 질문을 던지는 자유로운 사색가예요.",
     description:
       "당연해 보이는 일에도 '왜 그럴까?'를 떠올리며 새로운 관점으로 바라보는 걸 좋아해요. 관심 있는 주제가 생기면 밤을 새워서라도 파고들 만큼 놀라운 집중력을 발휘해요. 틀에 박힌 규칙보다는 나만의 논리와 아이디어가 자유롭게 흐를 때 가장 편안함을 느껴요. 겉보기엔 조용하지만, 마음이 통하는 친구와는 끝없는 수다를 즐길 줄 아는 매력적인 사람이에요.",
+    workStyle:
+      "직장에서는 기존 매뉴얼을 그대로 따르기보다 원리를 파헤쳐 새로운 해결책을 찾는 연구·기획 업무에 강해요. 반복적인 보고나 잦은 회식보다는 혼자 깊이 몰입할 수 있는 환경에서 빛이 나요.",
+    loveStyle:
+      "연애에서는 서로의 개인 시간을 존중하면서도 지적 호기심과 취향을 깊이 나누는 관계를 좋아해요. 연락 빈도가 잦진 않아도 함께 있을 때는 엉뚱하고 솔직한 매력으로 상대를 웃게 해요.",
+    loveMatchTypes: ["ENTJ", "ENFJ"],
+    loveMatchReason: "든든하게 방향을 잡아주면서도 호기심 많은 생각을 흥미롭게 들어줘요.",
     strengths: [
       "남들이 놓치는 틈새를 발견하는 독창적인 사고력이 있어요",
       "어떤 상황에서도 편견 없이 원리를 이해하려고 노력해요",
@@ -87,6 +113,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "관심 없는 일상적인 약속이나 마감을 깜빡하기 쉬워요",
     ],
     compatibleTypes: ["ENTJ", "ESTJ"],
+    mismatchTypes: ["ESFJ", "ISFJ"],
+    mismatchReason: "감정과 관습을 중시하는 대화 방식이 다소 답답하게 느껴질 수 있어요.",
     color: "#CFE6F7",
     character: {
       animal: "고양이",
@@ -99,6 +127,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "명확한 목표를 세우고 모두를 앞으로 이끄는 결단력 있는 개척자예요.",
     description:
       "어려운 과제를 만나도 망설이기보다 해결할 방법부터 찾아내는 실행력이 돋보여요. 전체 상황을 빠르게 파악하고 역할을 나누는 데 능숙해서 자연스럽게 중심 역할을 맡게 돼요. 스스로에게도 성장을 요구하는 편이라, 어제보다 오늘 더 나아지는 과정에서 보람을 느껴요. 솔직하고 시원한 화법 속에 팀과 동료를 진심으로 아끼는 책임감이 담겨 있어요.",
+    workStyle:
+      "회사에서는 목표와 마감, 역할 분담을 명확히 정리해 팀을 목표 지점까지 힘 있게 이끌어요. 문제 상황이 터져도 당황하지 않고 우선순위를 세워 빠르게 돌파구를 만들어 내요.",
+    loveStyle:
+      "연애할 때는 좋아하는 사람에게 솔직하게 마음을 표현하고, 데이트나 기념일도 든든하게 리드하는 편이에요. 서로의 꿈을 응원하며 함께 성장하는 건강한 연애를 추구해요.",
+    loveMatchTypes: ["INTP", "INFP"],
+    loveMatchReason: "추진력 있는 리더십과 상대의 섬세한 감성·아이디어가 멋진 균형을 이뤄요.",
     strengths: [
       "큰 목표를 현실적인 계획으로 바꾸는 조직력이 뛰어나요",
       "결정이 필요한 순간에 망설임 없이 판단을 내려요",
@@ -109,6 +143,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "쉬는 시간에도 일 생각을 멈추기 어려워 번아웃이 올 수 있어요",
     ],
     compatibleTypes: ["INTP", "INFP"],
+    mismatchTypes: ["ISFP", "ESFP"],
+    mismatchReason: "여유롭고 즉흥적인 속도가 목표 중심의 빠른 템포와 어긋날 수 있어요.",
     color: "#F9D6C8",
     character: {
       animal: "사자",
@@ -121,6 +157,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "재치 있는 입담과 기발한 상상으로 분위기를 환하게 바꾸는 발명가예요.",
     description:
       "새로운 가능성을 발견하고 다양한 사람과 의견을 주고받을 때 에너지가 샘솟아요. 정해진 답을 그대로 따르기보다 '다르게 해 보면 어떨까?'를 고민하며 색다른 시도를 즐겨요. 어떤 주제가 나와도 재치 있게 대화를 이어가는 능력이 뛰어나 주변에 웃음이 끊이지 않아요. 변화가 많은 환경일수록 오히려 눈을 반짝이며 유연하게 적응하는 편이에요.",
+    workStyle:
+      "직장에서는 브레인스토밍이나 신규 기획처럼 틀에 갇히지 않는 일에서 남다른 반짝임을 보여줘요. 다른 부서와 소통하며 분위기를 풀고, 막힌 문제를 색다른 시선으로 뚫어내는 데 능해요.",
+    loveStyle:
+      "연애는 늘 새롭고 유쾌한 모험 같아서, 재치 있는 장난과 끝없는 대화로 연인을 즐겁게 해줘요. 구속하기보다 서로의 개성을 존중하며 티키타카가 잘 맞는 연애를 할 때 가장 행복해요.",
+    loveMatchTypes: ["INFJ", "INTJ"],
+    loveMatchReason: "가벼운 농담부터 깊은 가치관 대화까지 지루할 틈 없이 잘 통하는 조합이에요.",
     strengths: [
       "순발력이 뛰어나 위기 상황에서도 기발한 대안을 찾아요",
       "열린 마음으로 다양한 사람의 생각을 편견 없이 받아들여요",
@@ -131,6 +173,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "토론을 즐기다 보니 가끔 말투가 장난스럽거나 날카롭게 보일 수 있어요",
     ],
     compatibleTypes: ["INFJ", "INTJ"],
+    mismatchTypes: ["ISFJ", "ISTJ"],
+    mismatchReason: "정해진 규칙과 전통을 지키는 태도가 자유로운 실험 정신과 부딪혀요.",
     color: "#FFE3B8",
     character: {
       animal: "여우",
@@ -143,6 +187,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "조용한 다정함으로 사람의 마음을 깊이 이해하는 섬세한 조언자예요.",
     description:
       "말하지 않아도 상대방의 기분이나 분위기 변화를 금세 알아차리는 따뜻한 감각을 지녔어요. 겉으로는 부드럽고 차분하지만, 내면에는 옳다고 믿는 가치와 신념이 단단하게 자리 잡고 있어요. 의미 있는 대화와 진심 어린 관계를 소중히 여겨 소수의 사람과 깊은 유대를 맺는 편이에요. 혼자만의 고요한 시간을 통해 마음을 정돈하고 다시 세상을 향해 온기를 건네줘요.",
+    workStyle:
+      "회사에서는 동료의 고충을 잘 들어주면서도 프로젝트의 큰 의미와 방향을 놓치지 않고 묵묵히 완수해요. 사람과 연결되는 기획이나 조율이 필요한 자리에서 조용한 신뢰를 얻어요.",
+    loveStyle:
+      "연애에서는 가벼운 만남보다 마음 깊이 교감하는 진실한 관계를 소중히 여겨요. 연인의 작은 표정 변화도 세심히 살펴 따뜻하게 챙겨 주며, 오래도록 깊은 사랑을 이어가요.",
+    loveMatchTypes: ["ENFP", "ENTP"],
+    loveMatchReason: "솔직하고 밝은 표현으로 조용히 품고 있던 마음까지 편안하게 열어줘요.",
     strengths: [
       "상대방의 입장에서 깊이 공감하고 진심으로 귀를 기울여요",
       "눈앞의 이익보다 먼 미래와 소중한 가치를 먼저 바라봐요",
@@ -153,6 +203,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "완벽을 추구하다 보니 스스로를 과하게 다그칠 때가 있어요",
     ],
     compatibleTypes: ["ENFP", "ENTP"],
+    mismatchTypes: ["ESTP", "ISTP"],
+    mismatchReason: "직설적이고 현실적인 행동파와 깊은 속마음을 나누기 어려울 수 있어요.",
     color: "#D3F0E4",
     character: {
       animal: "사슴",
@@ -165,6 +217,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "자신만의 다정한 시선으로 세상 속 작은 아름다움을 발견하는 감성파예요.",
     description:
       "작은 풍경이나 음악 하나에도 깊은 감동을 받고 마음속에 오래 간직하는 풍부한 감성을 가졌어요. 남들의 시선보다 내가 진심으로 옳고 소중하다고 느끼는 마음을 따를 때 가장 행복해요. 낯을 가리기도 하지만 마음을 연 사람에게는 한없이 다정하고 따뜻한 응원을 아끼지 않아요. 상처받기 쉬운 여린 면이 있으면서도, 중요한 가치 앞에서는 누구보다 단단한 내면을 보여줘요.",
+    workStyle:
+      "회사에서는 나만의 감성과 의미를 담을 수 있는 창작·기획·사람 돕기 업무에서 큰 보람을 느껴요. 지나친 경쟁보다 서로 존중하는 따뜻한 팀 분위기 속에서 꾸준히 실력을 발휘해요.",
+    loveStyle:
+      "연애를 하면 상대방의 작은 말과 행동에 온 마음을 다해 반응하는 로맨티스트가 돼요. 진심이 담긴 편지나 소소한 기억을 소중히 간직하며, 연인의 가장 포근한 안식처가 되어줘요.",
+    loveMatchTypes: ["ENFJ", "ENTJ"],
+    loveMatchReason: "따뜻하게 이끌어 주고 진심을 알아봐 줘서 마음을 온전히 기댈 수 있어요.",
     strengths: [
       "진정성 있는 공감 능력으로 주변 사람의 마음을 편안하게 해요",
       "풍부한 상상력과 섬세한 감성으로 독창적인 표현을 잘해요",
@@ -175,6 +233,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "상대방의 작은 말에도 혼자 오래 곱씹으며 서운해할 수 있어요",
     ],
     compatibleTypes: ["ENFJ", "ENTJ"],
+    mismatchTypes: ["ESTJ", "ISTJ"],
+    mismatchReason: "원칙과 효율을 앞세우는 말투에 여린 마음이 상처받기 쉬워요.",
     color: "#FADBE6",
     character: {
       animal: "토끼",
@@ -187,6 +247,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "주변 사람들의 장점을 먼저 알아보고 반짝이게 도와주는 따뜻한 리더예요.",
     description:
       "함께 있는 사람들이 소외되지 않고 편안하게 웃을 수 있도록 세심하게 분위기를 살피는 편이에요. 누군가의 가능성을 발견하면 진심으로 응원해 주고 실제로 잘될 수 있게 적극적으로 도와줘요. 따뜻한 말 한마디로 지친 사람의 마음을 녹이는 재능이 있어 주변에 늘 좋은 인연이 모여요. 모두를 챙기느라 바쁘지만, 그 안에서 함께 성장하는 기쁨을 크게 느껴요.",
+    workStyle:
+      "직장에서는 팀원들의 강점을 적재적소에 살려주고 협업 분위기를 화기애애하게 만드는 최고의 조율자예요. 후배나 동료가 지칠 때 가장 먼저 알아채고 용기를 북돋아 줘요.",
+    loveStyle:
+      "연애할 때는 애정 표현을 아끼지 않고 연인이 행복해하는 모습을 보며 큰 기쁨을 느껴요. 기념일과 작은 약속까지 정성껏 챙기며, 상대의 꿈을 진심으로 응원하는 든든한 편이에요.",
+    loveMatchTypes: ["INFP", "ISFP"],
+    loveMatchReason: "다정한 배려와 깊은 진심이 서로의 마음을 가장 포근하게 채워줘요.",
     strengths: [
       "사람들의 마음을 하나로 모으고 갈등을 부드럽게 풀어내요",
       "진심 어린 칭찬과 격려로 주변에 용기를 불어넣어요",
@@ -197,6 +263,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "거절하는 걸 어려워해서 무리한 부탁도 떠안기 쉬워요",
     ],
     compatibleTypes: ["INFP", "ISFP"],
+    mismatchTypes: ["ISTP", "ESTP"],
+    mismatchReason: "감정 표현이 담백하고 개인 시간을 중시해 거리감이 느껴질 수 있어요.",
     color: "#FFE5C4",
     character: {
       animal: "강아지",
@@ -209,6 +277,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "어디서든 생기를 불어넣고 새로운 인연과 이야기를 만들어 내는 모험가예요.",
     description:
       "세상에는 재미있고 의미 있는 일이 가득하다고 믿으며 매 순간을 반짝이는 눈으로 바라봐요. 처음 만나는 사람과도 금세 웃으며 어울릴 만큼 친화력이 좋고, 따뜻한 에너지를 나눠줘요. 머릿속에 떠오르는 다채로운 아이디어를 사람들과 나누며 함께 키워 갈 때 가장 신이 나요. 자유로운 영혼처럼 보이지만, 좋아하는 사람과 가치 앞에서는 누구보다 진심을 다해요.",
+    workStyle:
+      "회사에서는 참신한 아이디어를 가장 먼저 던지고, 어색한 팀 분위기도 금세 웃음바다로 만드는 분위기 메이커예요. 소통과 창의성이 중요한 프로젝트에서 빛나는 에너지를 발휘해요.",
+    loveStyle:
+      "연애에서는 좋아하는 감정을 숨기지 않고 다정하게 표현하며 매일매일을 특별한 이벤트처럼 만들어요. 연인의 소소한 이야기에도 눈을 반짝이며 진심으로 공감해 주는 사랑스러운 파트너예요.",
+    loveMatchTypes: ["INFJ", "INTJ"],
+    loveMatchReason: "통통 튀는 매력을 깊이 받아주고 차분하게 중심을 잡아주는 든든한 짝꿍이에요.",
     strengths: [
       "긍정적인 에너지와 유쾌함으로 주변 분위기를 밝게 만들어요",
       "고정관념에 얽매이지 않고 새로운 가능성을 잘 찾아내요",
@@ -219,6 +293,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "기분 변화에 따라 일정이나 계획을 즉흥적으로 바꿀 때가 있어요",
     ],
     compatibleTypes: ["INFJ", "INTJ"],
+    mismatchTypes: ["ISTJ", "ESTJ"],
+    mismatchReason: "꼼꼼한 계획과 규칙을 강조하는 분위기가 자유분방함을 답답하게 해요.",
     color: "#FFF0B8",
     character: {
       animal: "다람쥐",
@@ -231,6 +307,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "차분하고 꼼꼼하게 맡은 일을 끝까지 지켜내는 든든한 원칙주의자예요.",
     description:
       "화려하게 자신을 드러내기보다 묵묵히 제 몫을 다하며 신뢰를 쌓아가는 스타일이에요. 약속 시간과 정해진 절차를 소중히 여기고, 한 번 시작한 일은 빈틈없이 마무리해야 직성이 풀려요. 근거 없는 추측보다는 실제 경험과 정확한 사실을 바탕으로 차분하게 판단해요. 겉으로는 무뚝뚝해 보여도 오래 곁을 지켜주는 가장 믿음직한 친구가 되어줘요.",
+    workStyle:
+      "회사에서는 마감과 정확도를 누구보다 철저히 지켜 '맡기면 무조건 안심되는 사람'으로 통해요. 복잡한 자료나 일정도 체계적으로 정리해 팀의 실수를 미리 막아주는 든든한 기둥이에요.",
+    loveStyle:
+      "연애에서는 화려한 이벤트보다 한결같은 연락과 약속 이행으로 깊은 믿음을 쌓아가요. 겉표현이 쑥스러워도 연인이 필요로 할 때 가장 먼저 달려와 현실적인 도움을 주는 진국이에요.",
+    loveMatchTypes: ["ESFP", "ESTP"],
+    loveMatchReason: "유쾌한 에너지로 일상에 웃음을 주고, 차분한 안정감으로 서로를 채워줘요.",
     strengths: [
       "작은 디테일까지 놓치지 않는 꼼꼼함과 정확함이 있어요",
       "어떤 상황에서도 책임감을 가지고 약속을 반드시 지켜요",
@@ -241,6 +323,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "감정을 말로 표현하는 게 서툴러 오해를 살 때가 있어요",
     ],
     compatibleTypes: ["ESFP", "ESTP"],
+    mismatchTypes: ["ENFP", "INFP"],
+    mismatchReason: "계획 없이 즉흥적으로 바뀌는 일정과 감정적인 흐름이 버거울 수 있어요.",
     color: "#D6E3F8",
     character: {
       animal: "거북이",
@@ -253,6 +337,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "소중한 사람들의 작은 취향까지 기억하고 챙겨주는 따뜻한 조력자예요.",
     description:
       "주변 사람이 불편해하지 않도록 미리 세심하게 배려하고 조용히 도움을 건네는 다정한 성격이에요. 소소한 일상 속의 기억과 정을 오래 간직하며, 친한 사람에게 진심 어린 정성을 쏟아요. 튀기보다는 조화롭고 편안한 분위기를 만드는 데 힘쓰며 묵묵히 자리를 지켜요. 배려심이 깊은 만큼 겉으로는 괜찮다고 말해도 속으로는 혼자 고민이 많을 때도 있어요.",
+    workStyle:
+      "직장에서는 동료들이 놓치기 쉬운 세세한 부분까지 미리 챙기고 성실하게 뒷받침해 주는 숨은 공신이에요. 차분하고 책임감 있는 태도로 누구와 일해도 편안한 신뢰를 쌓아요.",
+    loveStyle:
+      "연애할 때는 상대방이 좋아했던 간식이나 사소한 말까지 기억해 두었다가 다정하게 챙겨줘요. 요란하지 않아도 늘 곁에서 따뜻하게 지켜주는, 오래 만날수록 진가가 드러나는 연인이에요.",
+    loveMatchTypes: ["ESFP", "ESTP"],
+    loveMatchReason: "다정한 챙김을 기쁘게 받아주고, 밝은 활력으로 마음을 편안히 풀어줘요.",
     strengths: [
       "상대의 작은 변화와 필요를 먼저 알아채는 섬세함이 있어요",
       "성실하고 인내심이 강해 꾸준함이 필요한 일에 강해요",
@@ -263,6 +353,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "내 휴식보다 남을 챙기는 걸 우선하다가 쉽게 피곤해질 수 있어요",
     ],
     compatibleTypes: ["ESFP", "ESTP"],
+    mismatchTypes: ["ENTP", "INTP"],
+    mismatchReason: "예측하기 어려운 돌발 행동과 직설적인 논리에 당황할 수 있어요.",
     color: "#FDE2D2",
     character: {
       animal: "곰",
@@ -275,6 +367,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "명확한 기준과 실행력으로 어지러운 상황을 질서 있게 정리하는 관리자예요.",
     description:
       "머뭇거리기보다 지금 당장 해야 할 일을 정리해 빠르게 행동으로 옮기는 걸 좋아해요. 규칙과 약속이 분명할 때 가장 편안함을 느끼며, 공정하고 투명한 기준을 중요하게 여겨요. 모임이나 팀에서도 빠진 부분이 없는지 꼼꼼히 챙기며 모두가 목표에 도달하도록 이끌어요. 겉으로는 단호해 보여도 가까운 사람들의 생활을 실질적으로 도와주는 든든한 편이에요.",
+    workStyle:
+      "회사에서는 모호한 상황을 명확한 일정과 역할로 정리해 빠르게 성과를 만들어 내는 실행력의 달인이에요. 책임감이 강하고 공정해서 프로젝트나 팀을 안정적으로 이끄는 데 탁월해요.",
+    loveStyle:
+      "연애에서는 밀당 없이 솔직하고 책임감 있게 관계를 이어가며 데이트 계획도 야무지게 챙겨요. 겉으로는 씩씩하지만 내 사람이라고 느끼면 생활 속 작은 부분까지 든든하게 보호해 줘요.",
+    loveMatchTypes: ["ISFP", "ISTP"],
+    loveMatchReason: "유연하고 편안한 태도로 긴장을 녹여주고, 든든한 실행력이 서로를 보완해요.",
     strengths: [
       "우선순위를 빠르게 정하고 일을 체계적으로 마무리해요",
       "솔직하고 명확한 의사소통으로 오해를 줄여줘요",
@@ -285,6 +383,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "내 방식이 가장 확실하다고 느껴 다른 의견을 받아들이기 어려울 때가 있어요",
     ],
     compatibleTypes: ["ISFP", "ISTP"],
+    mismatchTypes: ["INFP", "ENFP"],
+    mismatchReason: "현실적인 기준보다 감성과 기분을 우선하는 태도가 답답하게 보여요.",
     color: "#D5ECF2",
     character: {
       animal: "펭귄",
@@ -297,6 +397,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "다정한 말과 세심한 챙김으로 누구나 편안하게 어울리게 만드는 분위기 메이커예요.",
     description:
       "함께 웃고 맛있는 걸 나누며 소소한 행복을 공유할 때 가장 큰 에너지를 얻어요. 주변 사람들의 기념일이나 좋아하던 음식을 잘 기억해 두었다가 깜짝 감동을 주기도 해요. 갈등이 생기면 모두가 기분 상하지 않고 원만하게 풀리도록 중간에서 다리 역할을 해줘요. 사람들의 인정을 받고 도움이 되었다는 말을 들을 때 마음 깊이 보람을 느껴요.",
+    workStyle:
+      "직장에서는 동료 간 소통을 매끄럽게 이어주고 팀의 사기를 끌어올리는 따뜻한 연결고리예요. 일정과 사람 챙기기를 모두 잘 해내서 협업이 많은 환경에서 빛이 나요.",
+    loveStyle:
+      "연애할 때는 다정한 연락과 세심한 배려로 연인이 늘 사랑받고 있다는 느낌을 받게 해줘요. 함께 맛있는 걸 먹고 소소한 일상을 나누는 행복한 시간을 가장 소중하게 여겨요.",
+    loveMatchTypes: ["ISFP", "ISTP"],
+    loveMatchReason: "따뜻한 애정 표현에 잔잔하고 진실한 태도로 안정감을 더해줘요.",
     strengths: [
       "따뜻한 사교성으로 처음 만난 사람도 금세 편하게 만들어요",
       "주변 사람을 세심하게 챙기고 모임을 잘 이끌어 나가요",
@@ -307,6 +413,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "비판적인 말을 들으면 필요 이상으로 오래 상처받기 쉬워요",
     ],
     compatibleTypes: ["ISFP", "ISTP"],
+    mismatchTypes: ["INTP", "ISTP"],
+    mismatchReason: "감정 교류가 적고 혼자만의 시간을 우선하는 모습이 서운할 수 있어요.",
     color: "#FCE0EC",
     character: {
       animal: "양",
@@ -319,6 +427,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "말수는 적어도 필요한 순간에 정확하게 문제를 해결하는 실용적인 장인이에요.",
     description:
       "복잡한 이론보다 직접 손으로 만져 보고 부딪히며 원리를 익히는 데 뛰어난 감각을 가졌어요. 불필요한 감정 소모를 싫어하고, 각자의 공간과 자유를 존중해 주는 담백한 관계를 좋아해요. 갑작스러운 돌발 상황이 생겨도 크게 당황하지 않고 침착하게 해결 방법을 찾아내요. 평소엔 무심해 보여도 꼭 필요한 순간에는 조용히 나타나 도와주는 멋진 면이 있어요.",
+    workStyle:
+      "회사에서는 불필요한 형식보다 실무 문제의 핵심을 정확히 짚어 빠르게 해결하는 해결사예요. 위기 상황에서도 당황하지 않고 침착하게 도구나 기술을 다뤄 팀을 구해내요.",
+    loveStyle:
+      "연애에서는 구속이나 과한 감정 소모 없이 담백하고 편안한 관계를 선호해요. 말로 애정을 자주 표현하진 않지만, 연인의 고장 난 물건을 고쳐주거나 묵묵히 챙겨주는 반전 매력이 있어요.",
+    loveMatchTypes: ["ESFJ", "ESTJ"],
+    loveMatchReason: "먼저 다가가 따뜻하게 챙겨주면서도 침착하고 실용적인 매력에 끌려요.",
     strengths: [
       "위기 상황에서도 냉정함을 잃지 않고 빠르게 대처해요",
       "도구나 기술을 다루는 감각이 뛰어나 실용적인 해결책을 찾아요",
@@ -329,6 +443,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "지루한 반복 작업이나 장기 계획에는 쉽게 흥미를 잃을 수 있어요",
     ],
     compatibleTypes: ["ESFJ", "ESTJ"],
+    mismatchTypes: ["ENFJ", "INFJ"],
+    mismatchReason: "잦은 감정 확인과 깊은 공감을 요구하는 대화가 부담스럽게 느껴져요.",
     color: "#DDECE8",
     character: {
       animal: "고슴도치",
@@ -341,6 +457,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "현재의 순간을 온전히 느끼며 나만의 색깔로 조용히 빛나는 예술가예요.",
     description:
       "아름다운 색감이나 기분 좋은 촉감, 맛있는 음식처럼 오감을 자극하는 소소한 즐거움을 사랑해요. 누군가와 경쟁하기보다는 내 마음의 평화와 자유로운 리듬을 지키는 게 훨씬 중요해요. 다정하고 온순한 성격이라 주변 사람과 잘 어울리면서도, 혼자만의 충전 시간은 꼭 챙기는 편이에요. 말로 크게 약속하기보다 지금 곁에서 다정한 미소로 마음을 전해줘요.",
+    workStyle:
+      "회사에서는 갈등을 피하고 부드럽게 협업하며, 디자인이나 감각·디테일이 살아 있는 업무에서 훌륭한 감수성을 보여줘요. 강압적이지 않은 자유로운 분위기에서 꾸준히 역량을 펼쳐요.",
+    loveStyle:
+      "연애할 때는 거창한 말보다 함께 걷고 맛있는 걸 먹는 지금 이 순간의 온기를 소중히 여겨요. 온순하고 배려심이 깊어 연인의 마음을 편안하게 해주는 다정한 연인이에요.",
+    loveMatchTypes: ["ENFJ", "ESFJ"],
+    loveMatchReason: "먼저 따뜻하게 다가와 마음을 읽어주어 편안하고 안정적인 연애가 돼요.",
     strengths: [
       "섬세한 미적 감각과 따뜻한 감수성을 지니고 있어요",
       "누구에게나 편견 없이 부드럽고 유연하게 다가가요",
@@ -351,6 +473,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "장기적인 계획이나 규칙적인 루틴을 지키는 데 답답함을 느낄 수 있어요",
     ],
     compatibleTypes: ["ENFJ", "ESFJ"],
+    mismatchTypes: ["ENTJ", "INTJ"],
+    mismatchReason: "빈틈없이 몰아붙이는 추진력과 엄격한 기준에 쉽게 지칠 수 있어요.",
     color: "#E3F3D8",
     character: {
       animal: "판다",
@@ -363,6 +487,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "생각보다 몸이 먼저 움직이며 짜릿한 도전과 현장을 즐기는 에너지왕이에요.",
     description:
       "앉아서 길게 고민하기보다 일단 부딪혀 보면서 답을 찾아가는 시원시원한 행동파예요. 주변 상황의 변화를 동물적인 감각으로 빠르게 읽어 내고, 그 순간에 가장 유리한 선택을 해요. 유쾌하고 솔직한 매력 덕분에 어디를 가든 사람들과 금방 친해지고 활기찬 분위기를 만들어요. 지금 눈앞에 있는 문제를 해결하고 성취감을 맛볼 때 가장 살아 있음을 느껴요.",
+    workStyle:
+      "직장에서는 책상 앞 계획만 세우기보다 현장에 뛰어들어 빠르게 문제를 해결하는 행동파예요. 갑작스러운 변수에도 순발력 있게 대처해 팀에 활력과 돌파력을 불어넣어요.",
+    loveStyle:
+      "연애에서는 좋아하는 마음을 솔직하고 시원하게 표현하며 재미있는 데이트 코스를 잘 찾아요. 쿨하고 유쾌한 매력으로 연인과 늘 생동감 넘치는 즐거운 시간을 보내요.",
+    loveMatchTypes: ["ISFJ", "ISTJ"],
+    loveMatchReason: "화끈한 추진력에 섬세한 배려와 안정감이 더해져 환상의 호흡을 맞춰요.",
     strengths: [
       "실전 감각과 순발력이 뛰어나 어떤 현장에서도 빠르게 적응해요",
       "두려움 없이 새로운 경험에 도전하는 추진력이 있어요",
@@ -373,6 +503,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "차분하게 기다리거나 반복적인 서류 작업을 견디기 어려워해요",
     ],
     compatibleTypes: ["ISFJ", "ISTJ"],
+    mismatchTypes: ["INFJ", "ENFJ"],
+    mismatchReason: "진지하고 의미 중심적인 대화가 길어지면 금세 답답해질 수 있어요.",
     color: "#FFE2C6",
     character: {
       animal: "원숭이",
@@ -385,6 +517,12 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
     summary: "지금 이 순간을 축제로 만들며 주변에 웃음과 온기를 퍼뜨리는 엔터테이너예요.",
     description:
       "사람들과 함께 웃고 떠들며 즐거운 추억을 쌓는 일이라면 언제든 두 팔 벌려 환영해요. 표정과 리액션이 풍부해서 같이 있는 사람까지 덩달아 기분이 좋아지게 만드는 매력이 있어요. 복잡한 걱정보다는 오늘의 즐거움에 충실하며, 작은 이벤트로 일상을 특별하게 꾸미는 걸 좋아해요. 밝고 가벼워 보일 때도 있지만, 내 사람이라고 느끼면 누구보다 진심으로 챙겨줘요.",
+    workStyle:
+      "회사에서는 유쾌한 친화력으로 고객이나 동료를 금세 내 편으로 만드는 소통의 달인이에요. 팀이 지쳐 있을 때도 밝은 에너지와 센스 있는 리액션으로 분위기를 끌어올려요.",
+    loveStyle:
+      "연애할 때는 애교와 표현이 풍부해 연인의 하루를 환하게 밝혀주는 해피 바이러스예요. 함께 있는 시간마다 웃음이 끊이지 않게 만들며, 내 사람에게는 누구보다 진심으로 잘해줘요.",
+    loveMatchTypes: ["ISFJ", "ISTJ"],
+    loveMatchReason: "다정하고 든든하게 받아주는 짝꿍과 만나면 웃음과 안정감을 모두 얻어요.",
     strengths: [
       "어색한 자리도 순식간에 화기애애하게 바꾸는 친화력이 있어요",
       "풍부한 표현력과 센스로 주변에 즐거움을 선물해요",
@@ -395,6 +533,8 @@ export const MBTI_TYPES: Record<MbtiTypeCode, MbtiTypeInfo> = {
       "진지하고 무거운 고민을 혼자 오래 붙잡고 있는 걸 힘들어해요",
     ],
     compatibleTypes: ["ISFJ", "ISTJ"],
+    mismatchTypes: ["INTJ", "ENTJ"],
+    mismatchReason: "지나치게 계획적이고 진지한 분위기에서는 즐거움을 느끼기 어려워요.",
     color: "#FFD9DC",
     character: {
       animal: "앵무새",
