@@ -39,17 +39,17 @@ export default function AppShell({ children }: { children: ReactNode }) {
         }`}
       >
         {/* 모든 페이지 상단에 공통으로 보이는 헤더입니다 (375px 휴대폰에서도 넘치지 않게 배치) */}
-        <header className="flex items-center justify-between gap-2 px-4 py-3 bg-white/85 border-b border-purple-100/80">
+        <header className="flex items-center justify-between gap-1.5 px-3 sm:px-4 py-3 bg-white/85 border-b border-purple-100/80">
           {/* 왼쪽: 서비스 이름 (누르면 첫 화면으로 이동) */}
           <Link
             href="/"
-            className="text-base sm:text-lg font-bold tracking-tight text-purple-700 hover:text-purple-500 transition-colors whitespace-nowrap shrink-0"
+            className="text-sm sm:text-lg font-bold tracking-tight text-purple-700 hover:text-purple-500 transition-colors whitespace-nowrap shrink-0"
           >
             Tina&apos; MBTI
           </Link>
 
-          {/* 오른쪽: PC용/모바일용 선택 + 유형 도감 + 로그인/로그아웃 */}
-          <div className="flex items-center gap-1.5 shrink-0">
+          {/* 오른쪽: PC용/모바일용 선택 + 유형 도감 + 통계 + 로그인/로그아웃 */}
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
             <div
               role="group"
               aria-label="화면 보기 모드 선택"
@@ -59,51 +59,58 @@ export default function AppShell({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => setViewMode("pc")}
                 aria-pressed={isPc}
-                className={`rounded-full px-2 py-1 text-[11px] font-bold transition-all cursor-pointer whitespace-nowrap ${
+                className={`rounded-full px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer whitespace-nowrap ${
                   isPc
                     ? "bg-purple-600 text-white shadow-sm"
                     : "text-purple-700 hover:bg-purple-100/70"
                 }`}
               >
-                PC용
+                PC
               </button>
               <button
                 type="button"
                 onClick={() => setViewMode("mobile")}
                 aria-pressed={!isPc}
-                className={`rounded-full px-2 py-1 text-[11px] font-bold transition-all cursor-pointer whitespace-nowrap ${
+                className={`rounded-full px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer whitespace-nowrap ${
                   !isPc
                     ? "bg-purple-600 text-white shadow-sm"
                     : "text-purple-700 hover:bg-purple-100/70"
                 }`}
               >
-                모바일용
+                모바일
               </button>
             </div>
 
-            <nav aria-label="주요 메뉴" className="flex items-center gap-1.5">
+            <nav aria-label="주요 메뉴" className="flex items-center gap-1 sm:gap-1.5">
               <Link
                 href="/types"
-                className="inline-flex items-center rounded-full bg-purple-50 px-2.5 py-1.5 text-xs font-medium text-purple-700 hover:bg-purple-100 transition-colors whitespace-nowrap"
+                className="inline-flex items-center rounded-full bg-purple-50 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-purple-700 hover:bg-purple-100 transition-colors whitespace-nowrap"
               >
                 유형 도감
               </Link>
 
+              <Link
+                href="/stats"
+                className="inline-flex items-center rounded-full bg-purple-50 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-purple-700 hover:bg-purple-100 transition-colors whitespace-nowrap"
+              >
+                통계
+              </Link>
+
               {/* 로그인 상태를 확인하는 동안은 자리를 비워 두어 메뉴 깜빡임을 막습니다 */}
               {loading ? (
-                <span className="inline-block w-[52px]" aria-hidden="true" />
+                <span className="inline-block w-[44px] sm:w-[52px]" aria-hidden="true" />
               ) : user ? (
                 <button
                   type="button"
                   onClick={() => void signOut()}
-                  className="inline-flex items-center rounded-full bg-pink-50 px-2.5 py-1.5 text-xs font-medium text-pink-700 hover:bg-pink-100 transition-colors whitespace-nowrap cursor-pointer"
+                  className="inline-flex items-center rounded-full bg-pink-50 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-pink-700 hover:bg-pink-100 transition-colors whitespace-nowrap cursor-pointer"
                 >
                   로그아웃
                 </button>
               ) : (
                 <Link
                   href="/login"
-                  className="inline-flex items-center rounded-full bg-purple-600 px-2.5 py-1.5 text-xs font-bold text-white hover:bg-purple-500 transition-colors whitespace-nowrap"
+                  className="inline-flex items-center rounded-full bg-purple-600 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-bold text-white hover:bg-purple-500 transition-colors whitespace-nowrap"
                 >
                   로그인
                 </Link>
