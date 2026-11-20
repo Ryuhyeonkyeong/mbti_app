@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getMbtiTypeInfo, type MbtiTypeInfo } from "@/data/types";
 import ShareResultButton from "./ShareResultButton";
+import SaveResultButton from "./SaveResultButton";
 import CharacterViewer from "./CharacterViewer";
 import { useViewMode } from "./AppShell";
 
@@ -109,14 +110,17 @@ export default function ResultView({
 
           {/* PC용에서는 왼쪽 아래에 액션 버튼을 바로 배치합니다 */}
           {isPc && (
-            <section className="flex items-start gap-3">
-              <Link
-                href="/test"
-                className="flex-1 inline-flex items-center justify-center rounded-2xl bg-white border border-purple-100 px-4 py-3.5 text-sm font-bold text-[#2e293a] shadow-[0_6px_18px_rgba(140,120,180,0.08)] hover:bg-purple-50/70 active:scale-[0.99] transition-all"
-              >
-                다시 검사하기
-              </Link>
-              <ShareResultButton />
+            <section className="space-y-3">
+              <SaveResultButton typeCode={info.code} />
+              <div className="flex items-start gap-3">
+                <Link
+                  href="/test"
+                  className="flex-1 inline-flex items-center justify-center rounded-2xl bg-white border border-purple-100 px-4 py-3.5 text-sm font-bold text-[#2e293a] shadow-[0_6px_18px_rgba(140,120,180,0.08)] hover:bg-purple-50/70 active:scale-[0.99] transition-all"
+                >
+                  다시 검사하기
+                </Link>
+                <ShareResultButton />
+              </div>
             </section>
           )}
         </div>
@@ -285,14 +289,17 @@ export default function ResultView({
 
           {/* 모바일용에서는 여기에 액션 버튼을 배치합니다 */}
           {!isPc && (
-            <section className="flex items-start gap-3 pt-1">
-              <Link
-                href="/test"
-                className="flex-1 inline-flex items-center justify-center rounded-2xl bg-white border border-purple-100 px-5 py-4 text-base font-bold text-[#2e293a] shadow-[0_6px_18px_rgba(140,120,180,0.08)] hover:bg-purple-50/70 active:scale-[0.99] transition-all"
-              >
-                다시 검사하기
-              </Link>
-              <ShareResultButton />
+            <section className="space-y-3 pt-1">
+              <SaveResultButton typeCode={info.code} />
+              <div className="flex items-start gap-3">
+                <Link
+                  href="/test"
+                  className="flex-1 inline-flex items-center justify-center rounded-2xl bg-white border border-purple-100 px-5 py-4 text-base font-bold text-[#2e293a] shadow-[0_6px_18px_rgba(140,120,180,0.08)] hover:bg-purple-50/70 active:scale-[0.99] transition-all"
+                >
+                  다시 검사하기
+                </Link>
+                <ShareResultButton />
+              </div>
             </section>
           )}
 

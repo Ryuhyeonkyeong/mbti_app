@@ -39,7 +39,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         }`}
       >
         {/* 모든 페이지 상단에 공통으로 보이는 헤더입니다 (375px 휴대폰에서도 넘치지 않게 배치) */}
-        <header className="flex items-center justify-between gap-1.5 px-3 sm:px-4 py-3 bg-white/85 border-b border-purple-100/80">
+        <header className="flex flex-wrap items-center justify-between gap-1.5 px-3 sm:px-4 py-3 bg-white/85 border-b border-purple-100/80">
           {/* 왼쪽: 서비스 이름 (누르면 첫 화면으로 이동) */}
           <Link
             href="/"
@@ -100,13 +100,21 @@ export default function AppShell({ children }: { children: ReactNode }) {
               {loading ? (
                 <span className="inline-block w-[44px] sm:w-[52px]" aria-hidden="true" />
               ) : user ? (
-                <button
-                  type="button"
-                  onClick={() => void signOut()}
-                  className="inline-flex items-center rounded-full bg-pink-50 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-pink-700 hover:bg-pink-100 transition-colors whitespace-nowrap cursor-pointer"
-                >
-                  로그아웃
-                </button>
+                <>
+                  <Link
+                    href="/mypage"
+                    className="inline-flex items-center rounded-full bg-purple-50 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-purple-700 hover:bg-purple-100 transition-colors whitespace-nowrap"
+                  >
+                    마이페이지
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => void signOut()}
+                    className="inline-flex items-center rounded-full bg-pink-50 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-pink-700 hover:bg-pink-100 transition-colors whitespace-nowrap cursor-pointer"
+                  >
+                    로그아웃
+                  </button>
+                </>
               ) : (
                 <Link
                   href="/login"
